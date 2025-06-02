@@ -4,104 +4,120 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bee Productive | Remote Recruiting Made Simple</title>
+  <title>Bee Productive | Efficient Remote Hiring Solutions</title>
+  <meta name="description"
+    content="Bee Productive connects U.S. businesses with top-tier remote talent. Efficient as Hive. Simple as Honey.">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'bee-yellow': '#FFD700',
-            'bee-yellow-light': '#FFF9C4',
-            'bee-gray-light': '#F3F4F6',
-          }
-        }
-      }
-    }
-  </script>
   <style>
-    @keyframes float {
-      0% {
-        transform: translateY(0px);
-      }
-
-      50% {
-        transform: translateY(-10px);
-      }
-
-      100% {
-        transform: translateY(0px);
-      }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f9fa;
+      scroll-behavior: smooth;
     }
 
-    .floating {
-      animation: float 3s ease-in-out infinite;
-    }
-
-    .hover-scale {
-      transition: transform 0.3s ease;
-    }
-
-    .hover-scale:hover {
-      transform: scale(1.03);
-    }
-
-    .gradient-bg {
-      background: linear-gradient(135deg, #FFF9C4 0%, #FFFFFF 100%);
+    .hero-gradient {
+      background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
     }
 
     .hexagon {
-      width: 40px;
-      height: 23.09px;
+      width: 28px;
+      height: 28px;
       background-color: #FFD700;
       position: relative;
       display: inline-block;
       margin-right: 12px;
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     }
 
-    .hexagon:before,
-    .hexagon:after {
-      content: "";
-      position: absolute;
-      width: 0;
-      border-left: 20px solid transparent;
-      border-right: 20px solid transparent;
-    }
-
-    .hexagon:before {
-      bottom: 100%;
-      border-bottom: 11.55px solid #FFD700;
-    }
-
-    .hexagon:after {
-      top: 100%;
-      border-top: 11.55px solid #FFD700;
-    }
-
-    .service-card:hover .service-icon {
-      transform: rotate(10deg) scale(1.1);
-    }
-
-    .service-icon {
-      transition: all 0.3s ease;
-    }
-
-    .industry-card:hover .industry-icon {
-      transform: translateY(-5px);
-    }
-
-    .industry-icon {
-      transition: all 0.3s ease;
-    }
-
-    .review-card:hover {
+    .service-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
 
-    .review-card {
+    .popup-form {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup-content {
+      animation: popup 0.3s ease-out;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    @keyframes popup {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .testimonial-card {
+      background-color: white;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .testimonial-card::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid white;
+    }
+
+    .hex-bg {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFD700' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .industry-card {
       transition: all 0.3s ease;
+      transform: translateY(10px);
+      opacity: 0;
+    }
+
+    .industry-card.animate {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .industry-card:hover {
+      transform: scale(1.03) !important;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo-scroll-container {
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .logo-scroll {
+      display: inline-block;
+      animation: scroll 30s linear infinite;
+    }
+
+    .logo-scroll:hover {
+      animation-play-state: paused;
     }
 
     @keyframes scroll {
@@ -114,104 +130,134 @@
       }
     }
 
-    .logo-scroller {
-      display: flex;
-      width: 200%;
-      animation: scroll 30s linear infinite;
-    }
-
-    .logo-scroller:hover {
-      animation-play-state: paused;
+    .logo-item {
+      display: inline-block;
+      margin: 0 40px;
+      vertical-align: middle;
     }
   </style>
 </head>
 
-<body class="font-sans antialiased text-gray-800">
-  <!-- Navigation -->
-  <nav class="bg-white shadow-sm sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between h-16">
-        <div class="flex items-center">
-          <div class="flex-shrink-0 flex items-center">
-            <i class="fas fa-bee text-2xl text-bee-yellow mr-2"></i>
-            <span class="text-xl font-bold text-gray-900">Bee Productive</span>
-          </div>
-        </div>
-        <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
-          <a href="#services" class="text-gray-700 hover:text-bee-yellow px-3 py-2 text-sm font-medium">Services</a>
-          <a href="#industries" class="text-gray-700 hover:text-bee-yellow px-3 py-2 text-sm font-medium">Industries</a>
-          <a href="#how-it-works" class="text-gray-700 hover:text-bee-yellow px-3 py-2 text-sm font-medium">How It
-            Works</a>
-          <a href="#about" class="text-gray-700 hover:text-bee-yellow px-3 py-2 text-sm font-medium">About</a>
-          <a href="#contact"
-            class="bg-bee-yellow hover:bg-yellow-600 text-gray-900 px-4 py-2 rounded-md text-sm font-medium transition duration-300">Get
-            Started</a>
-        </div>
-        <div class="-mr-2 flex items-center md:hidden">
-          <button type="button" id="mobile-menu-button"
-            class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-bee-yellow focus:outline-none">
-            <i class="fas fa-bars"></i>
-          </button>
-        </div>
+<body class="text-gray-800">
+  <!-- Header -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center">
+        <div class="hexagon"></div>
+        <a href="#" class="text-2xl font-bold text-gray-800">Bee Productive</a>
+      </div>
+      <nav class="hidden md:flex space-x-8">
+        <a href="#services" class="text-gray-600 hover:text-yellow-500 transition">Services</a>
+        <a href="#process" class="text-gray-600 hover:text-yellow-500 transition">How It Works</a>
+        <a href="#benefits" class="text-gray-600 hover:text-yellow-500 transition">Benefits</a>
+        <a href="#industries" class="text-gray-600 hover:text-yellow-500 transition">Industries</a>
+        <a href="#about" class="text-gray-600 hover:text-yellow-500 transition">About</a>
+        <a href="#contact" class="text-gray-600 hover:text-yellow-500 transition">Contact</a>
+      </nav>
+      <button onclick="openPopup()"
+        class="bg-yellow-500 hover:bg-orange-500 text-white px-4 py-2 rounded-full transition md:block hidden">
+        Get Started
+      </button>
+      <button class="md:hidden text-gray-600" id="mobile-menu-button">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="md:hidden hidden bg-white w-full px-4 py-2 shadow-md" id="mobile-menu">
+      <div class="flex flex-col space-y-3">
+        <a href="#services" class="text-gray-600 hover:text-yellow-500 transition py-1">Services</a>
+        <a href="#process" class="text-gray-600 hover:text-yellow-500 transition py-1">How It Works</a>
+        <a href="#benefits" class="text-gray-600 hover:text-yellow-500 transition py-1">Benefits</a>
+        <a href="#industries" class="text-gray-600 hover:text-yellow-500 transition py-1">Industries</a>
+        <a href="#about" class="text-gray-600 hover:text-yellow-500 transition py-1">About</a>
+        <a href="#contact" class="text-gray-600 hover:text-yellow-500 transition py-1">Contact</a>
+        <button onclick="openPopup()"
+          class="bg-yellow-500 hover:bg-orange-500 text-white px-4 py-2 rounded-full transition w-full my-2">
+          Get Started
+        </button>
       </div>
     </div>
-    <!-- Mobile menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
-      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-        <a href="#services"
-          class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-bee-yellow">Services</a>
-        <a href="#industries"
-          class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-bee-yellow">Industries</a>
-        <a href="#how-it-works" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-bee-yellow">How It
-          Works</a>
-        <a href="#about" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-bee-yellow">About</a>
-        <a href="#contact"
-          class="block w-full text-center bg-bee-yellow hover:bg-yellow-600 text-gray-900 px-4 py-2 rounded-md text-base font-medium mt-2">Get
-          Started</a>
-      </div>
-    </div>
-  </nav>
+  </header>
 
   <!-- Hero Section -->
-  <section class="gradient-bg">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
-      <div class="md:flex items-center">
-        <div class="md:w-1/2 mb-12 md:mb-0">
-          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-4">
-            Efficient as Hive.<br>
-            Simple as Honey.
-          </h1>
-          <p class="text-lg text-gray-600 mb-8 max-w-lg">
-            We help U.S. companies outsource smarter by connecting them with top-tier virtual talent from Latin America
-            and the Philippines. Let us manage the recruiting, vetting, and placement—so you can focus on growing your
-            business.
-          </p>
-          <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-            <a href="#contact"
-              class="bg-bee-yellow hover:bg-yellow-600 text-gray-900 px-6 py-3 rounded-md text-lg font-medium text-center transition duration-300">
-              Request Talent
-            </a>
-            <a href="#how-it-works"
-              class="border border-gray-300 hover:border-bee-yellow text-gray-700 hover:text-bee-yellow px-6 py-3 rounded-md text-lg font-medium text-center transition duration-300">
-              How It Works
-            </a>
+  <section class="hero-gradient text-white py-20 md:py-32">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+      <div class="md:w-1/2 mb-10 md:mb-0">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">
+          <div class="flex items-center">
+            <div class="hexagon"></div>
+            <span>Bee Productive</span>
           </div>
+        </h1>
+        <h2 class="text-2xl md:text-3xl font-semibold mb-6">Efficient as Hive. Simple as Honey.</h2>
+        <p class="text-lg mb-8 max-w-lg">
+          We connect U.S. businesses with top-tier remote talent to streamline your hiring process and boost
+          productivity.
+        </p>
+        <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+          <button onclick="openPopup()"
+            class="bg-white hover:bg-gray-100 text-yellow-600 font-bold px-6 py-3 rounded-full transition">
+            Book a Call
+          </button>
+          <a href="#services"
+            class="border-2 border-white hover:bg-white hover:text-yellow-600 text-white font-bold px-6 py-3 rounded-full transition text-center">
+            Our Services
+          </a>
         </div>
-        <div class="md:w-1/2 flex justify-center">
-          <div class="relative">
-            <img
-              src="https://images.unsplash.com/photo-1579389083078-4e7018379f7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-              alt="Remote team working" class="rounded-lg shadow-xl w-full max-w-md">
-            <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg">
-              <div class="flex items-center">
-                <div class="bg-bee-yellow rounded-full p-3 mr-3">
-                  <i class="fas fa-check text-white"></i>
-                </div>
-                <div>
-                  <p class="font-bold">100+</p>
-                  <p class="text-sm text-gray-600">Talents Placed</p>
-                </div>
-              </div>
+      </div>
+      <div class="md:w-1/2 flex justify-center">
+        <img
+          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+          alt="Remote team working together" class="rounded-lg shadow-xl max-w-full h-auto">
+      </div>
+    </div>
+  </section>
+
+  <!-- Trusted By Section -->
+  <section class="py-12 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl font-semibold text-center mb-8">Trusted by innovative companies across the U.S.</h2>
+
+      <div class="logo-scroll-container">
+        <div class="logo-scroll">
+          <div class="logo-item">
+            <div class="bg-white p-4 rounded-lg shadow-sm w-32 h-20 flex items-center justify-center">
+              <span class="text-gray-700 font-bold">Company A</span>
+            </div>
+          </div>
+          <div class="logo-item">
+            <div class="bg-white p-4 rounded-lg shadow-sm w-32 h-20 flex items-center justify-center">
+              <span class="text-gray-700 font-bold">Company B</span>
+            </div>
+          </div>
+          <div class="logo-item">
+            <div class="bg-white p-4 rounded-lg shadow-sm w-32 h-20 flex items-center justify-center">
+              <span class="text-gray-700 font-bold">Company C</span>
+            </div>
+          </div>
+          <div class="logo-item">
+            <div class="bg-white p-4 rounded-lg shadow-sm w-32 h-20 flex items-center justify-center">
+              <span class="text-gray-700 font-bold">Company D</span>
+            </div>
+          </div>
+          <div class="logo-item">
+            <div class="bg-white p-4 rounded-lg shadow-sm w-32 h-20 flex items-center justify-center">
+              <span class="text-gray-700 font-bold">Company E</span>
+            </div>
+          </div>
+          <div class="logo-item">
+            <div class="bg-white p-4 rounded-lg shadow-sm w-32 h-20 flex items-center justify-center">
+              <span class="text-gray-700 font-bold">Company F</span>
+            </div>
+          </div>
+          <div class="logo-item">
+            <div class="bg-white p-4 rounded-lg shadow-sm w-32 h-20 flex items-center justify-center">
+              <span class="text-gray-700 font-bold">Company G</span>
+            </div>
+          </div>
+          <div class="logo-item">
+            <div class="bg-white p-4 rounded-lg shadow-sm w-32 h-20 flex items-center justify-center">
+              <span class="text-gray-700 font-bold">Company H</span>
             </div>
           </div>
         </div>
@@ -219,729 +265,693 @@
     </div>
   </section>
 
-  <!-- Trust Badges -->
-  <section class="bg-white py-12 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <p class="text-center text-gray-500 mb-8">Trusted by innovative companies across the U.S.</p>
-      <div class="overflow-hidden">
-        <div class="logo-scroller">
-          <div class="flex space-x-16 items-center">
-            <div class="text-3xl font-bold text-gray-400 min-w-max">Startup</div>
-            <div class="text-3xl font-bold text-gray-400 min-w-max">Tech</div>
-            <div class="text-3xl font-bold text-gray-400 min-w-max">SaaS</div>
-            <div class="text-3xl font-bold text-gray-400 min-w-max">Agency</div>
-            <div class="text-3xl font-bold text-gray-400 min-w-max">E-commerce</div>
-            <div class="text-3xl font-bold text-gray-400 min-w-max">Healthcare</div>
-            <div class="text-3xl font-bold text-gray-400 min-w-max">Finance</div>
-            <div class="text-3xl font-bold text-gray-400 min-w-max">Education</div>
-          </div>
-          <div class="flex space-x-16 items-center">
-            <div class="text-3xl font-bold text-gray-400 min-w-max">Startup</div>
-            <div class="text-3xl font-bold text-gray-400 min-w-max">Tech</div>
-            <div class="text-3xl font-bold text-gray-400 min-w-max">SaaS</div>
-            <div class="text-3xl font-bold text-gray-400 min-w-max">Agency</div>
-            <div class="text-3xl font-bold text-gray-400 min-w-max">E-commerce</div>
-            <div class="text-3xl font-bold text-gray-400 min-w-max">Healthcare</div>
-            <div class="text-3xl font-bold text-gray-400 min-w-max">Finance</div>
-            <div class="text-3xl font-bold text-gray-400 min-w-max">Education</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Virtual Assistant Services Section -->
-  <section id="services" class="py-20 bg-bee-gray-light">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <div class="flex items-center justify-center">
-          <div class="hexagon"></div>
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">Virtual Assistant Services</h2>
-        </div>
-        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-          We specialize in connecting you with highly skilled remote professionals for these key roles
-        </p>
-      </div>
+  <!-- How It Works -->
+  <section id="process" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-4">How It Works</h2>
+      <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">
+        Our streamlined 3-step process makes remote hiring simple and effective.
+      </p>
 
       <div class="grid md:grid-cols-3 gap-8">
-        <!-- Customer Service -->
-        <div
-          class="service-card bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 hover-scale relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-16 h-16 bg-bee-yellow transform rotate-45 translate-x-6 -translate-y-6">
-          </div>
-          <div class="bg-bee-yellow-light rounded-full w-16 h-16 flex items-center justify-center mb-6 service-icon">
-            <i class="fas fa-headset text-bee-yellow text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Customer Service</h3>
-          <p class="text-gray-600 mb-4">
-            Handling customer inquiries, complaints, and support tickets via phone, email, and chat with professionalism
-            and efficiency.
-          </p>
-          <div class="mt-4">
-            <span class="text-bee-yellow font-bold">Starting at $15/hr</span>
-          </div>
-        </div>
-
-        <!-- Accounting & Billing -->
-        <div
-          class="service-card bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 hover-scale relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-16 h-16 bg-bee-yellow transform rotate-45 translate-x-6 -translate-y-6">
-          </div>
-          <div class="bg-bee-yellow-light rounded-full w-16 h-16 flex items-center justify-center mb-6 service-icon">
-            <i class="fas fa-calculator text-bee-yellow text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Accounting & Billing</h3>
-          <p class="text-gray-600 mb-4">
-            Managing invoices, processing payments, reconciling accounts, and maintaining financial records with
-            accuracy and confidentiality.
-          </p>
-          <div class="mt-4">
-            <span class="text-bee-yellow font-bold">Starting at $20/hr</span>
-          </div>
-        </div>
-
-        <!-- Marketing -->
-        <div
-          class="service-card bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 hover-scale relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-16 h-16 bg-bee-yellow transform rotate-45 translate-x-6 -translate-y-6">
-          </div>
-          <div class="bg-bee-yellow-light rounded-full w-16 h-16 flex items-center justify-center mb-6 service-icon">
-            <i class="fas fa-bullhorn text-bee-yellow text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Marketing</h3>
-          <p class="text-gray-600 mb-4">
-            Creating content, managing social media, email campaigns, and digital marketing strategies to grow your
-            brand presence.
-          </p>
-          <div class="mt-4">
-            <span class="text-bee-yellow font-bold">Starting at $18/hr</span>
-          </div>
-        </div>
-
-        <!-- Legal Assistance -->
-        <div
-          class="service-card bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 hover-scale relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-16 h-16 bg-bee-yellow transform rotate-45 translate-x=6 -translate-y-6">
-          </div>
-          <div class="bg-bee-yellow-light rounded-full w=16 h-16 flex items-center justify-center mb-6 service-icon">
-            <i class="fas fa-gavel text-bee-yellow text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Legal Assistance</h3>
-          <p class="text-gray-600 mb-4">
-            Providing paralegal support, document preparation, legal research, and case management for law firms and
-            legal departments.
-          </p>
-          <div class="mt-4">
-            <span class="text-bee-yellow font-bold">Starting at $25/hr</span>
-          </div>
-        </div>
-
-        <!-- Real Estate & Property Management -->
-        <div
-          class="service-card bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 hover-scale relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-16 h-16 bg-bee-yellow transform rotate-45 translate-x-6 -translate-y-6">
-          </div>
-          <div class="bg-bee-yellow-light rounded-full w-16 h-16 flex items-center justify-center mb-6 service-icon">
-            <i class="fas fa-home text-bee-yellow text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Real Estate & Property Management</h3>
-          <p class="text-gray-600 mb-4">
-            Handling tenant communications, lease administration, property listings, and coordination of maintenance
-            requests.
-          </p>
-          <div class="mt-4">
-            <span class="text-bee-yellow font-bold">Starting at $18/hr</span>
-          </div>
-        </div>
-
-        <!-- Administrative Support -->
-        <div
-          class="service-card bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 hover-scale relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-16 h-16 bg-bee-yellow transform rotate-45 translate-x-6 -translate-y-6">
-          </div>
-          <div class="bg-bee-yellow-light rounded-full w-16 h-16 flex items-center justify-center mb-6 service-icon">
-            <i class="fas fa-tasks text-bee-yellow text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Administrative Support</h3>
-          <p class="text-gray-600 mb-4">
-            Managing calendars, scheduling appointments, data entry, travel arrangements, and general office
-            administration.
-          </p>
-          <div class="mt-4">
-            <span class="text-bee-yellow font-bold">Starting at $15/hr</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="text-center mt-12">
-        <a href="#contact"
-          class="inline-flex items-center bg-bee-yellow hover:bg-yellow-600 text-gray-900 px-6 py-3 rounded-md text-lg font-medium transition duration-300">
-          Get Custom Pricing
-          <i class="fas fa-arrow-right ml-2"></i>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Industries We Serve Section -->
-  <section id="industries" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">Industries We Serve</h2>
-        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-          Our virtual assistants are experienced in supporting businesses across these industries
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8">
-        <!-- Law Firms -->
-        <div
-          class="industry-card bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 hover-scale border border-gray-100">
-          <div class="bg-bee-yellow-light rounded-full w-16 h-16 flex items-center justify-center mb-6 industry-icon">
-            <i class="fas fa-balance-scale text-bee-yellow text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Law Firms</h3>
-          <p class="text-gray-600">
-            VAs assist with document preparation, correspondence, scheduling, and admin support to keep your practice
-            running smoothly.
-          </p>
-        </div>
-
-        <!-- Marketing Agencies -->
-        <div
-          class="industry-card bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 hover-scale border border-gray-100">
-          <div class="bg-bee-yellow-light rounded-full w-16 h-16 flex items-center justify-center mb-6 industry-icon">
-            <i class="fas fa-chart-line text-bee-yellow text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Marketing Agencies</h3>
-          <p class="text-gray-600">
-            Support for content creation, email marketing, branding, ad campaigns, and basic web development to amplify
-            your client work.
-          </p>
-        </div>
-
-        <!-- Real Estate -->
-        <div
-          class="industry-card bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 hover-scale border border-gray-100">
-          <div class="bg-bee-yellow-light rounded-full w-16 h-16 flex items-center justify-center mb-6 industry-icon">
-            <i class="fas fa-house-user text-bee-yellow text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Real Estate</h3>
-          <p class="text-gray-600">
-            Help with scheduling showings, managing paperwork, and client communication so you can focus on closing
-            deals.
-          </p>
-        </div>
-
-        <!-- Healthcare -->
-        <div
-          class="industry-card bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 hover-scale border border-gray-100">
-          <div class="bg-bee-yellow-light rounded-full w-16 h-16 flex items-center justify-center mb-6 industry-icon">
-            <i class="fas fa-heartbeat text-bee-yellow text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Healthcare</h3>
-          <p class="text-gray-600">
-            Services include appointment booking, data entry, outreach, and product promotion to support your medical
-            practice.
-          </p>
-        </div>
-
-        <!-- Retail & Dropshipping -->
-        <div
-          class="industry-card bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 hover-scale border border-gray-100">
-          <div class="bg-bee-yellow-light rounded-full w-16 h-16 flex items-center justify-center mb-6 industry-icon">
-            <i class="fas fa-shopping-cart text-bee-yellow text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Retail & Dropshipping</h3>
-          <p class="text-gray-600">
-            Lead sourcing, vendor communication, inventory tracking, and order management to streamline your e-commerce
-            operations.
-          </p>
-        </div>
-
-        <!-- Entrepreneurs -->
-        <div
-          class="industry-card bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 hover-scale border border-gray-100">
-          <div class="bg-bee-yellow-light rounded-full w-16 h-16 flex items-center justify-center mb-6 industry-icon">
-            <i class="fas fa-lightbulb text-bee-yellow text=2xl"></i>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Entrepreneurs</h3>
-          <p class="text-gray-600">
-            Personal assistant support, project coordination, and recruitment assistance to help you scale your business
-            efficiently.
-          </p>
-        </div>
-
-        <!-- Property Management -->
-        <div
-          class="industry-card bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 hover-scale border border-gray-100">
-          <div class="bg-bee-yellow-light rounded-full w-16 h-16 flex items-center justify-center mb-6 industry-icon">
-            <i class="fas fa-building text-bee-yellow text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Property Management</h3>
-          <p class="text-gray-600">
-            Oversee vendor relationships, schedule inspections, and engage with leads and tenants to maintain your
-            properties.
-          </p>
-        </div>
-
-        <!-- Tech & Software -->
-        <div
-          class="industry-card bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 hover-scale border border-gray-100">
-          <div class="bg-bee-yellow-light rounded-full w-16 h-16 flex items-center justify-center mb-6 industry-icon">
-            <i class="fas fa-laptop-code text-bee-yellow text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb=3">Tech & Software</h3>
-          <p class="text-gray-600">
-            Help onboard new users, manage customer inquiries, and provide tier-one support for your SaaS products.
-          </p>
-        </div>
-
-        <!-- And More -->
-        <div
-          class="industry-card bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 hover-scale border border-gray-100">
-          <div class="bg-bee-yellow-light rounded-full w-16 h-16 flex items-center justify-center mb-6 industry-icon">
-            <i class="fas fa-ellipsis-h text-bee-yellow text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">And More...</h3>
-          <p class="text-gray-600">
-            Our team can assist with anything from customer service to complex admin and tech support across various
-            industries.
-          </p>
-        </div>
-      </div>
-
-      <div class="text-center mt-12">
-        <a href="#contact"
-          class="inline-flex items-center bg-bee-yellow hover:bg-yellow-600 text-gray-900 px-6 py-3 rounded-md text-lg font-medium transition duration-300">
-          Schedule a Free Consultation
-          <i class="fas fa-calendar-check ml-2"></i>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- How It Works Section -->
-  <section id="how-it-works" class="py-20 bg-bee-gray-light">
-    <div class="max-w-7xl mx-auto px=4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">How Bee Productive Works</h2>
-        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-          Our streamlined process makes remote hiring effortless for your team
-        </p>
-      </div>
-
-      <div class="relative">
-        <!-- Timeline -->
-        <div class="hidden md:block absolute left-1/2 h-full w-1 bg-gray-200 transform -translate-x-1/2"></div>
-
         <!-- Step 1 -->
-        <div class="flex flex-col md:flex-row items-center mb-16">
-          <div class="md:w-1/2 md:pr-12 mb-8 md:mb-0 order-1 md:order-1">
-            <div class="bg-bee-yellow-light p-6 rounded-lg">
-              <h3 class="text-xl font-bold text-gray-900 mb-3">1. Discovery Call</h3>
-              <p class="text-gray-600">
-                We start with a 30-minute call to understand your hiring needs, company culture, and role requirements.
-              </p>
-            </div>
+        <div class="bg-gray-50 p-6 rounded-lg text-center transition hover:shadow-lg">
+          <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-search text-yellow-500 text-2xl"></i>
           </div>
-          <div class="md:w-1/2 flex justify-center order-2 md:order-2">
-            <div class="relative">
-              <div
-                class="bg-bee-yellow rounded-full w-16 h-16 flex items-center justify-center text-white text-xl font-bold absolute -left-8 top-1/2 transform -translate-y-1/2">
-                1
-              </div>
-              <img
-                src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                alt="Discovery call" class="rounded-lg shadow-md w-full max-w-md">
-            </div>
-          </div>
+          <h3 class="text-xl font-semibold mb-2">1. Discovery</h3>
+          <p class="text-gray-600">
+            We learn about your business needs, culture, and specific role requirements to find the perfect match.
+          </p>
         </div>
 
         <!-- Step 2 -->
-        <div class="flex flex-col md:flex-row items-center mb-16">
-          <div class="md:w-1/2 md:pl-12 mb-8 md:mb-0 order-1 md:order-2">
-            <div class="bg-gray-100 p-6 rounded-lg">
-              <h3 class="text-xl font-bold text-gray-900 mb-3">2. Custom Strategy</h3>
-              <p class="text-gray-600">
-                Within 48 hours, we deliver a tailored recruitment strategy including sourcing channels and timeline.
-              </p>
-            </div>
+        <div class="bg-gray-50 p-6 rounded-lg text-center transition hover:shadow-lg">
+          <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-check-double text-yellow-500 text-2xl"></i>
           </div>
-          <div class="md:w-1/2 flex justify-center order-2 md:order-1">
-            <div class="relative">
-              <div
-                class="bg-bee-yellow rounded-full w-16 h-16 flex items-center justify-center text-white text-xl font-bold absolute -right-8 top-1/2 transform -translate-y-1/2">
-                2
-              </div>
-              <img
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
-                alt="Strategy meeting" class="rounded-lg shadow-md w-full max-w-md">
-            </div>
-          </div>
+          <h3 class="text-xl font-semibold mb-2">2. Vetting</h3>
+          <p class="text-gray-600">
+            Our rigorous screening process evaluates skills, experience, and cultural fit before presenting candidates.
+          </p>
         </div>
 
         <!-- Step 3 -->
-        <div class="flex flex-col md:flex-row items-center mb-16">
-          <div class="md:w-1/2 md:pr-12 mb-8 md:mb-0 order-1 md:order-1">
-            <div class="bg-bee-yellow-light p-6 rounded-lg">
-              <h3 class="text-xl font-bold text-gray-900 mb-3">3. Talent Sourcing</h3>
-              <p class="text-gray-600">
-                Our team taps into our network and specialized channels to find the perfect candidates for your roles.
-              </p>
-            </div>
+        <div class="bg-gray-50 p-6 rounded-lg text-center transition hover:shadow-lg">
+          <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-handshake text-yellow-500 text-2xl"></i>
           </div>
-          <div class="md:w-1/2 flex justify-center order-2 md:order-2">
-            <div class="relative">
-              <div
-                class="bg-bee-yellow rounded-full w-16 h-16 flex items-center justify-center text-white text-xl font-bold absolute -left-8 top-1/2 transform -translate-y-1/2">
-                3
-              </div>
-              <img
-                src="https://images.unsplash.com/photo-1521791055366-0dce472d2bce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1474&q=80"
-                alt="Talent sourcing" class="rounded-lg shadow-md w-full max-w-md">
+          <h3 class="text-xl font-semibold mb-2">3. Interview & Hire</h3>
+          <p class="text-gray-600">
+            You interview pre-vetted candidates and make your selection. We handle all onboarding logistics.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-4">Our Services</h2>
+      <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">
+        We specialize in recruiting top remote talent across these key business functions.
+      </p>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Service 1 -->
+        <div class="service-card bg-white p-6 rounded-lg shadow-md transition duration-300">
+          <div class="flex items-center mb-4">
+            <div class="bg-yellow-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+              <i class="fas fa-headset text-yellow-500"></i>
             </div>
+            <h3 class="text-xl font-semibold">Customer Service</h3>
+          </div>
+          <p class="text-gray-600">
+            Friendly, professional support teams to handle inquiries, complaints, and customer satisfaction.
+          </p>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="service-card bg-white p-6 rounded-lg shadow-md transition duration-300">
+          <div class="flex items-center mb-4">
+            <div class="bg-yellow-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+              <i class="fas fa-calculator text-yellow-500"></i>
+            </div>
+            <h3 class="text-xl font-semibold">Accounting & Billing</h3>
+          </div>
+          <p class="text-gray-600">
+            Detail-oriented professionals for bookkeeping, invoicing, payroll, and financial reporting.
+          </p>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="service-card bg-white p-6 rounded-lg shadow-md transition duration-300">
+          <div class="flex items-center mb-4">
+            <div class="bg-yellow-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+              <i class="fas fa-bullhorn text-yellow-500"></i>
+            </div>
+            <h3 class="text-xl font-semibold">Marketing</h3>
+          </div>
+          <p class="text-gray-600">
+            Creative teams for digital marketing, content creation, social media management, and SEO.
+          </p>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="service-card bg-white p-6 rounded-lg shadow-md transition duration-300">
+          <div class="flex items-center mb-4">
+            <div class="bg-yellow-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+              <i class="fas fa-gavel text-yellow-500"></i>
+            </div>
+            <h3 class="text-xl font-semibold">Legal Assistance</h3>
+          </div>
+          <p class="text-gray-600">
+            Paralegals and legal researchers to support your law firm or corporate legal department.
+          </p>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="service-card bg-white p-6 rounded-lg shadow-md transition duration-300">
+          <div class="flex items-center mb-4">
+            <div class="bg-yellow-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+              <i class="fas fa-home text-yellow-500"></i>
+            </div>
+            <h3 class="text-xl font-semibold">Real Estate & Property Management</h3>
+          </div>
+          <p class="text-gray-600">
+            Virtual assistants for listings, tenant screening, lease administration, and property coordination.
+          </p>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="service-card bg-white p-6 rounded-lg shadow-md transition duration-300">
+          <div class="flex items-center mb-4">
+            <div class="bg-yellow-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+              <i class="fas fa-tasks text-yellow-500"></i>
+            </div>
+            <h3 class="text-xl font-semibold">Administrative Support</h3>
+          </div>
+          <p class="text-gray-600">
+            Virtual assistants for email management, scheduling, data entry, and general office support.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section id="benefits" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-4">Benefits of Outsourcing</h2>
+      <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">
+        Why U.S. companies choose our remote hiring solutions
+      </p>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Benefit 1 -->
+        <div class="flex">
+          <div class="bg-yellow-100 w-12 h-12 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+            <i class="fas fa-star text-yellow-500"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-2">Top Talent</h3>
+            <p class="text-gray-600">
+              Access to highly skilled professionals vetted for expertise and cultural fit.
+            </p>
           </div>
         </div>
 
-        <!-- Step 4 -->
-        <div class="flex flex-col md:flex-row items-center">
-          <div class="md:w-1/2 md:pl-12 mb-8 md:mb-0 order-1 md:order=2">
-            <div class="bg-gray-100 p-6 rounded-lg">
-              <h3 class="text-xl font-bold text-gray-900 mb-3">4. Interview & Hire</h3>
-              <p class="text-gray-600">
-                We coordinate interviews and handle negotiations, presenting you with only the most qualified
-                candidates.
-              </p>
-            </div>
+        <!-- Benefit 2 -->
+        <div class="flex">
+          <div class="bg-yellow-100 w-12 h-12 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+            <i class="fas fa-dollar-sign text-yellow-500"></i>
           </div>
-          <div class="md:w-1/2 flex justify-center order-2 md:order-1">
-            <div class="relative">
-              <div
-                class="bg-bee-yellow rounded-full w-16 h-16 flex items-center justify-center text-white text-xl font-bold absolute -right-8 top-1/2 transform -translate-y-1/2">
-                4
-              </div>
-              <img
-                src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                alt="Interview process" class="rounded-lg shadow-md w-full max-w-md">
-            </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-2">Cost-Effective</h3>
+            <p class="text-gray-600">
+              Save up to 70% compared to local hires without compromising quality.
+            </p>
           </div>
+        </div>
+
+        <!-- Benefit 3 -->
+        <div class="flex">
+          <div class="bg-yellow-100 w-12 h-12 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+            <i class="fas fa-language text-yellow-500"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-2">Bilingual Talent</h3>
+            <p class="text-gray-600">
+              Many of our professionals are fluent in English and Spanish.
+            </p>
+          </div>
+        </div>
+
+        <!-- Benefit 4 -->
+        <div class="flex">
+          <div class="bg-yellow-100 w-12 h-12 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+            <i class="fas fa-hands-helping text-yellow-500"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-2">Continuous Support</h3>
+            <p class="text-gray-600">
+              We provide ongoing management support to ensure success.
+            </p>
+          </div>
+        </div>
+
+        <!-- Benefit 5 -->
+        <div class="flex">
+          <div class="bg-yellow-100 w-12 h-12 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+            <i class="fas fa-credit-card text-yellow-500"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-2">Hassle-Free Payments</h3>
+            <p class="text-gray-600">
+              Simple monthly billing with no hidden fees or complicated contracts.
+            </p>
+          </div>
+        </div>
+
+        <!-- Benefit 6 -->
+        <div class="flex">
+          <div class="bg-yellow-100 w-12 h-12 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+            <i class="fas fa-clock text-yellow-500"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-2">More Time for What Matters</h3>
+            <p class="text-gray-600">
+              Focus on growing your business while we handle the hiring and HR.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries -->
+  <section id="industries" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-4">Industries We Serve</h2>
+      <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">
+        We have experience recruiting for businesses across these sectors
+      </p>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Industry 1 -->
+        <div class="industry-card bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center mb-3">
+            <div class="bg-yellow-100 w-10 h-10 rounded-full flex items-center justify-center mr-3">
+              <i class="fas fa-balance-scale text-yellow-500"></i>
+            </div>
+            <h3 class="text-lg font-semibold">Law Firms</h3>
+          </div>
+          <p class="text-gray-600 text-sm">
+            Virtual paralegals, legal researchers, and administrative support for busy practices.
+          </p>
+        </div>
+
+        <!-- Industry 2 -->
+        <div class="industry-card bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center mb-3">
+            <div class="bg-yellow-100 w-10 h-10 rounded-full flex items-center justify-center mr-3">
+              <i class="fas fa-ad text-yellow-500"></i>
+            </div>
+            <h3 class="text-lg font-semibold">Marketing Agencies</h3>
+          </div>
+          <p class="text-gray-600 text-sm">
+            Graphic designers, copywriters, social media managers, and digital marketers.
+          </p>
+        </div>
+
+        <!-- Industry 3 -->
+        <div class="industry-card bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center mb-3">
+            <div class="bg-yellow-100 w-10 h-10 rounded-full flex items-center justify-center mr-3">
+              <i class="fas fa-home text-yellow-500"></i>
+            </div>
+            <h3 class="text-lg font-semibold">Real Estate</h3>
+          </div>
+          <p class="text-gray-600 text-sm">
+            Virtual assistants for lead generation, transaction coordination, and property management.
+          </p>
+        </div>
+
+        <!-- Industry 4 -->
+        <div class="industry-card bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center mb-3">
+            <div class="bg-yellow-100 w-10 h-10 rounded-full flex items-center justify-center mr-3">
+              <i class="fas fa-heartbeat text-yellow-500"></i>
+            </div>
+            <h3 class="text-lg font-semibold">Healthcare</h3>
+          </div>
+          <p class="text-gray-600 text-sm">
+            Medical billing specialists, virtual receptionists, and healthcare administrators.
+          </p>
+        </div>
+
+        <!-- Industry 5 -->
+        <div class="industry-card bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center mb-3">
+            <div class="bg-yellow-100 w-10 h-10 rounded-full flex items-center justify-center mr-3">
+              <i class="fas fa-truck text-yellow-500"></i>
+            </div>
+            <h3 class="text-lg font-semibold">Retail & Dropshipping</h3>
+          </div>
+          <p class="text-gray-600 text-sm">
+            Customer service reps, order processors, and inventory managers for e-commerce businesses.
+          </p>
+        </div>
+
+        <!-- Industry 6 -->
+        <div class="industry-card bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center mb-3">
+            <div class="bg-yellow-100 w-10 h-10 rounded-full flex items-center justify-center mr-3">
+              <i class="fas fa-lightbulb text-yellow-500"></i>
+            </div>
+            <h3 class="text-lg font-semibold">Entrepreneurs</h3>
+          </div>
+          <p class="text-gray-600 text-sm">
+            Virtual assistants to help founders with administrative tasks and business operations.
+          </p>
+        </div>
+
+        <!-- Industry 7 -->
+        <div class="industry-card bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center mb-3">
+            <div class="bg-yellow-100 w-10 h-10 rounded-full flex items-center justify-center mr-3">
+              <i class="fas fa-building text-yellow-500"></i>
+            </div>
+            <h3 class="text-lg font-semibold">Property Management</h3>
+          </div>
+          <p class="text-gray-600 text-sm">
+            Leasing agents, maintenance coordinators, and tenant relations specialists.
+          </p>
+        </div>
+
+        <!-- Industry 8 -->
+        <div class="industry-card bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center mb-3">
+            <div class="bg-yellow-100 w-10 h-10 rounded-full flex items-center justify-center mr-3">
+              <i class="fas fa-laptop-code text-yellow-500"></i>
+            </div>
+            <h3 class="text-lg font-semibold">Tech & Software</h3>
+          </div>
+          <p class="text-gray-600 text-sm">
+            Developers, QA testers, technical support, and IT administrators for tech companies.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us -->
+  <section id="about" class="py-16 bg-white hex-bg">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+          <h2 class="text-3xl font-bold mb-6">About Bee Productive</h2>
+          <p class="text-gray-600 mb-4">
+            Founded in 2020, Bee Productive was born from the realization that small and mid-sized businesses struggle
+            with the time-consuming and expensive process of hiring quality remote talent.
+          </p>
+          <p class="text-gray-600 mb-4">
+            Our mission is simple: to make remote hiring as efficient as a beehive and as simple as honey. We believe in
+            human productivity and focus on creating meaningful connections between businesses and talent.
+          </p>
+          <p class="text-gray-600">
+            What sets us apart is our rigorous vetting process and ongoing support to ensure both clients and candidates
+            thrive in their working relationships.
+          </p>
+        </div>
+        <div class="md:w-1/2">
+          <img
+            src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+            alt="Team meeting at Bee Productive" class="rounded-lg shadow-lg w-full">
         </div>
       </div>
     </div>
   </section>
 
   <!-- Testimonials -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
-        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-          Don't just take our word for it - hear from companies who've built their teams with us
-        </p>
-      </div>
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-4">What Our Clients Say</h2>
+      <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">
+        Don't just take our word for it - hear from businesses that have built successful remote teams with us.
+      </p>
 
-      <div class="grid md:grid-cols-3 gap-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Testimonial 1 -->
-        <div class="review-card bg-white p-8 rounded-lg shadow-md border border-gray-100 hover:border-bee-yellow">
+        <div class="testimonial-card p-6 shadow-md">
           <div class="flex items-center mb-4">
-            <div class="text-bee-yellow text-2xl mr-2">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-          </div>
-          <p class="text-gray-600 italic mb-6">
-            "Bee Productive found us an incredible remote CTO in just 3 weeks when we'd been searching for months. Their
-            process is truly efficient."
-          </p>
-          <div class="flex items-center">
-            <div class="bg-gray-200 rounded-full w-12 h-12 mr-4 flex items-center justify-center">
-              <i class="fas fa-user text-gray-600"></i>
+            <div class="bg-yellow-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+              <i class="fas fa-quote-left text-yellow-500"></i>
             </div>
             <div>
-              <p class="font-bold">Sarah Johnson</p>
-              <p class="text-sm text-gray-500">CEO, TechStart Inc.</p>
+              <h4 class="font-semibold">Sarah Johnson</h4>
+              <p class="text-gray-500 text-sm">Marketing Director</p>
             </div>
           </div>
+          <p class="text-gray-600 italic">
+            "Bee Productive found us an amazing social media manager who has transformed our online presence. The
+            vetting process was thorough and saved us countless hours of interviews."
+          </p>
         </div>
 
         <!-- Testimonial 2 -->
-        <div class="review-card bg-white p-8 rounded-lg shadow-md border border-gray-100 hover:border-bee-yellow">
+        <div class="testimonial-card p-6 shadow-md">
           <div class="flex items-center mb-4">
-            <div class="text-bee-yellow text-2xl mr=2">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-          </div>
-          <p class="text-gray-600 italic mb-6">
-            "The quality of candidates was outstanding. We hired 3 remote developers through them and couldn't be
-            happier with the results."
-          </p>
-          <div class="flex items-center">
-            <div class="bg-gray-200 rounded-full w-12 h-12 mr-4 flex items-center justify-center">
-              <i class="fas fa-user text-gray-600"></i>
+            <div class="bg-yellow-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+              <i class="fas fa-quote-left text-yellow-500"></i>
             </div>
             <div>
-              <p class="font-bold">Michael Chen</p>
-              <p class="text-sm text-gray-500">CTO, CloudScale</p>
+              <h4 class="font-semibold">Michael Chen</h4>
+              <p class="text-gray-500 text-sm">CEO, Tech Startup</p>
             </div>
           </div>
+          <p class="text-gray-600 italic">
+            "Our remote developer from Bee Productive has been instrumental in scaling our platform. The continuous
+            support from their team gives us peace of mind."
+          </p>
         </div>
 
         <!-- Testimonial 3 -->
-        <div class="review-card bg-white p-8 rounded-lg shadow-md border border-gray-100 hover:border-bee-yellow">
+        <div class="testimonial-card p-6 shadow-md">
           <div class="flex items-center mb-4">
-            <div class="text-bee-yellow text-2xl mr-2">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-            </div>
-          </div>
-          <p class="text-gray-600 italic mb-6">
-            "As a small agency, we didn't have HR resources. Bee Productive became our outsourced recruiting team and
-            delivered amazing talent."
-          </p>
-          <div class="flex items-center">
-            <div class="bg-gray-200 rounded-full w-12 h-12 mr-4 flex items-center justify-center">
-              <i class="fas fa-user text-gray-600"></i>
+            <div class="bg-yellow-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+              <i class="fas fa-quote-left text-yellow-500"></i>
             </div>
             <div>
-              <p class="font-bold">David Rodriguez</p>
-              <p class="text-sm text-gray-500">Founder, GrowthMarketing</p>
+              <h4 class="font-semibold">Lisa Rodriguez</h4>
+              <p class="text-gray-500 text-sm">Law Firm Partner</p>
             </div>
           </div>
+          <p class="text-gray-600 italic">
+            "The paralegal they matched us with has become an invaluable member of our team. Bee Productive understood
+            exactly what we needed in terms of skills and culture fit."
+          </p>
+        </div>
+      </div>
+
+      <div class="flex justify-center mt-12">
+        <div class="flex space-x-2">
+          <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+          <div class="w-3 h-3 rounded-full bg-yellow-200"></div>
+          <div class="w-3 h-3 rounded-full bg-yellow-200"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- About Section -->
-  <section id="about" class="py-20 bg-bee-gray-light">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="md:flex items-center">
-        <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
-          <p class="text-gray-600 mb=4">
-            Bee Productive was founded in 2020 when our team recognized the growing need for efficient remote hiring
-            solutions. As companies shifted to distributed work, traditional recruiting methods were falling short.
-          </p>
-          <p class="text-gray-600 mb-6">
-            We built a process that combines human expertise with smart technology to deliver exceptional remote talent
-            faster and with less hassle for our clients.
-          </p>
-          <div class="flex items-center">
-            <div class="bg-bee-yellow rounded-full w-16 h-16 flex items-center justify-center text-white text-2xl mr-4">
-              <i class="fas fa-bullseye"></i>
-            </div>
-            <div>
-              <h3 class="font-bold text-gray-900">Our Mission</h3>
-              <p class="text-gray-600">Make remote hiring simple, efficient, and productive for growing companies.</p>
-            </div>
-          </div>
-        </div>
-        <div class="md:w-1/2">
-          <div class="bg-white p-8 rounded-lg shadow-md">
-            <h3 class="text-xl font-bold text-gray-900 mb-4">Why Choose Bee Productive?</h3>
-            <ul class="space-y-4">
-              <li class="flex items-start">
-                <div
-                  class="bg-bee-yellow rounded-full w-6 h-6 flex items-center justify-center text-white text-xs mr-3 mt-1">
-                  <i class="fas fa-check"></i>
-                </div>
-                <span class="text-gray-600"><strong>Specialized in remote roles</strong> - We understand the unique
-                  skills needed for remote work</span>
-              </li>
-              <li class="flex items-start">
-                <div
-                  class="bg-bee-yellow rounded-full w-6 h-6 flex items-center justify-center text-white text-xs mr-3 mt-1">
-                  <i class="fas fa-check"></i>
-                </div>
-                <span class="text-gray-600"><strong>U.S.-based team</strong> - We work in your timezone and understand
-                  your culture</span>
-              </li>
-              <li class="flex items-start">
-                <div
-                  class="bg-bee-yellow rounded-full w-6 h-6 flex items-center justify-center text-white text-xs mr-3 mt=1">
-                  <i class="fas fa-check"></i>
-                </div>
-                <span class="text-gray-600"><strong>Transparent pricing</strong> - No hidden fees or surprise
-                  charges</span>
-              </li>
-              <li class="flex items-start">
-                <div
-                  class="bg-bee-yellow rounded-full w-6 h-6 flex items-center justify-center text-white text-xs mr-3 mt-1">
-                  <i class="fas fa-check"></i>
-                </div>
-                <span class="text-gray=600"><strong>90-day guarantee</strong> - If your hire doesn't work out, we'll
-                  find a replacement</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Contact -->
+  <section id="contact" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-4">Get in Touch</h2>
+        <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">
+          Ready to build your remote team? Contact us today to discuss your hiring needs.
+        </p>
 
-  <!-- CTA Section -->
-  <section class="py-20 bg-bee-yellow">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold text-gray-900 mb-6">Ready to Build Your Remote Team?</h2>
-      <p class="text-xl text-gray-700 mb-8 max-w-3xl mx-auto">
-        Schedule a free consultation to discuss your hiring needs and how we can help.
-      </p>
-      <a href="#contact"
-        class="inline-flex items-center bg-white hover:bg-gray-100 text-gray-900 px-8 py-4 rounded-md text-lg font-bold transition duration-300 shadow-lg">
-        Book a Free Call
-        <i class="fas fa-calendar-alt ml-2"></i>
-      </a>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="md:flex">
-        <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-6">Get in Touch</h2>
-          <p class="text-gray-600 mb-8">
-            Tell us about your hiring needs and we'll respond within 24 hours with a customized plan.
-          </p>
-
-          <div class="space-y-6">
-            <div class="flex items-start">
-              <div class="bg-bee-yellow rounded-full w-10 h-10 flex items-center justify-center text-white mr-4">
-                <i class="fas fa-envelope"></i>
-              </div>
+        <div class="grid md:grid-cols-2 gap-12">
+          <div>
+            <h3 class="text-xl font-semibold mb-4">Contact Form</h3>
+            <form class="space-y-4">
               <div>
-                <h3 class="font-bold text-gray-900">Email Us</h3>
-                <a href="mailto:hello@beeproductive.com"
-                  class="text-gray-600 hover:text-bee-yellow">hello@beeproductive.com</a>
-              </div>
-            </div>
-
-            <div class="flex items-start">
-              <div class="bg-bee-yellow rounded-full w-10 h-10 flex items-center justify-center text-white mr-4">
-                <i class="fas fa-phone-alt"></i>
-              </div>
-              <div>
-                <h3 class="font-bold text-gray-900">Call Us</h3>
-                <a href="tel:+18005551234" class="text-gray-600 hover:text-bee-yellow">+1 (800) 555-1234</a>
-              </div>
-            </div>
-
-            <div class="flex items-start">
-              <div class="bg-bee-yellow rounded-full w-10 h-10 flex items-center justify-center text-white mr-4">
-                <i class="fas fa-map-marker-alt"></i>
-              </div>
-              <div>
-                <h3 class="font-bold text-gray-900">Visit Us</h3>
-                <p class="text-gray-600">123 Business Ave, Suite 100<br>San Francisco, CA 94107</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="md:w-1/2">
-          <div class="bg-white p-8 rounded-lg shadow-md">
-            <h3 class="text-xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
-            <form>
-              <div class="mb-4">
-                <label for="name" class="block text-gray=700 text-sm font-medium mb-2">Name</label>
+                <label for="name" class="block text-gray-700 mb-1">Name</label>
                 <input type="text" id="name"
-                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-bee-yellow">
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
               </div>
-              <div class="mb-4">
-                <label for="email" class="block text-gray-700 text-sm font-medium mb-2">Email</label>
+              <div>
+                <label for="company" class="block text-gray-700 mb-1">Company</label>
+                <input type="text" id="company"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+              </div>
+              <div>
+                <label for="role" class="block text-gray-700 mb-1">Your Role</label>
+                <input type="text" id="role"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+              </div>
+              <div>
+                <label for="email" class="block text-gray-700 mb-1">Email</label>
                 <input type="email" id="email"
-                  class="w-full px-4 py=2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-bee-yellow">
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
               </div>
-              <div class="mb-4">
-                <label for="phone" class="block text-gray-700 text-sm font-medium mb-2">Phone</label>
-                <input type="tel" id="phone"
-                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-bee-yellow">
-              </div>
-              <div class="mb-4">
-                <label for="message" class="block text-gray-700 text-sm font-medium mb-2">Message</label>
-                <textarea id="message" rows="4"
-                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-bee-yellow"></textarea>
+              <div>
+                <label for="needs" class="block text-gray-700 mb-1">Hiring Needs</label>
+                <textarea id="needs" rows="3"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"></textarea>
               </div>
               <button type="submit"
-                class="w-full bg-bee-yellow hover:bg-yellow-600 text-gray-900 px-6 py-3 rounded-md text-lg font-medium transition duration-300">
+                class="bg-yellow-500 hover:bg-orange-500 text-white font-bold px-6 py-3 rounded-full transition w-full">
                 Send Message
               </button>
             </form>
           </div>
+
+          <div>
+            <h3 class="text-xl font-semibold mb-4">Schedule a Call</h3>
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <!-- Calendly inline widget begin -->
+              <div class="calendly-inline-widget" data-url="https://calendly.com/beeproductive/30min"
+                style="min-width:320px;height:630px;"></div>
+              <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+              <!-- Calendly inline widget end -->
+            </div>
+
+            <div class="mt-8">
+              <h3 class="text-xl font-semibold mb-4">Contact Info</h3>
+              <div class="space-y-3">
+                <div class="flex items-center">
+                  <div class="bg-yellow-100 w-10 h-10 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-envelope text-yellow-500"></i>
+                  </div>
+                  <a href="mailto:hello@beeproductive.com"
+                    class="text-gray-600 hover:text-yellow-500">hello@beeproductive.com</a>
+                </div>
+                <div class="flex items-center">
+                  <div class="bg-yellow-100 w-10 h-10 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-phone text-yellow-500"></i>
+                  </div>
+                  <a href="tel:+18005551234" class="text-gray-600 hover:text-yellow-500">(800) 555-1234</a>
+                </div>
+                <div class="flex items-center">
+                  <div class="bg-yellow-100 w-10 h-10 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-map-marker-alt text-yellow-500"></i>
+                  </div>
+                  <span class="text-gray-600">123 Hive Street, Austin, TX 78701</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Popup Form -->
+  <div class="popup-form" id="popupForm">
+    <div class="popup-content bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
+      <div class="p-6">
+        <div class="flex justify-between items-center mb-4">
+          <div class="flex items-center">
+            <div class="hexagon"></div>
+            <h3 class="text-xl font-bold">Request Talent</h3>
+          </div>
+          <button onclick="closePopup()" class="text-gray-400 hover:text-gray-600">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <form class="space-y-4">
+          <div>
+            <label for="popup-name" class="block text-gray-700 mb-1">Full Name*</label>
+            <input type="text" id="popup-name" required
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+          </div>
+          <div>
+            <label for="popup-company" class="block text-gray-700 mb-1">Company Name*</label>
+            <input type="text" id="popup-company" required
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+          </div>
+          <div>
+            <label for="popup-title" class="block text-gray-700 mb-1">Job Title*</label>
+            <input type="text" id="popup-title" required
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+          </div>
+          <div>
+            <label for="popup-email" class="block text-gray-700 mb-1">Email*</label>
+            <input type="email" id="popup-email" required
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+          </div>
+          <div>
+            <label for="popup-needs" class="block text-gray-700 mb-1">Hiring Needs*</label>
+            <textarea id="popup-needs" rows="3" required
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"></textarea>
+          </div>
+          <div>
+            <label for="popup-time" class="block text-gray-700 mb-1">Best Time to Contact</label>
+            <select id="popup-time"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+              <option value="">Select preferred time</option>
+              <option value="morning">Morning (9am-12pm)</option>
+              <option value="afternoon">Afternoon (12pm-5pm)</option>
+              <option value="evening">Evening (5pm-8pm)</option>
+            </select>
+          </div>
+          <div class="flex items-start">
+            <div class="flex items-center h-5">
+              <input id="popup-consent" type="checkbox"
+                class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-yellow-300">
+            </div>
+            <label for="popup-consent" class="ml-2 text-sm text-gray-600">
+              I agree to receive communications from Bee Productive about my inquiry.
+            </label>
+          </div>
+          <button type="submit"
+            class="bg-yellow-500 hover:bg-orange-500 text-white font-bold px-6 py-3 rounded-full transition w-full">
+            Request Talent Now
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirmation Message (hidden by default) -->
+  <div class="popup-form hidden" id="confirmationMessage">
+    <div class="popup-content bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
+      <div class="p-8 text-center">
+        <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+          <i class="fas fa-check text-yellow-500 text-2xl"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-4">Thank You!</h3>
+        <p class="text-gray-600 mb-6">
+          Thanks! We'll be in touch shortly to help you build your remote team.
+        </p>
+        <button onclick="closePopup()"
+          class="bg-yellow-500 hover:bg-orange-500 text-white font-bold px-6 py-3 rounded-full transition">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="bg-gray-900 text-white py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-4 gap-8">
         <div>
           <div class="flex items-center mb-4">
-            <i class="fas fa-bee text-2xl text-bee-yellow mr-2"></i>
+            <div class="hexagon"></div>
             <span class="text-xl font-bold">Bee Productive</span>
           </div>
-          <p class="text-gray-400">
-            Helping U.S. companies build high-performing remote teams with top-tier virtual talent.
+          <p class="text-gray-400 mb-4">
+            Efficient as Hive. Simple as Honey.
           </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-yellow-500 transition">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-yellow-500 transition">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-yellow-500 transition">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-yellow-500 transition">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
         </div>
+
         <div>
-          <h3 class="text-lg font-semibold mb-4">Services</h3>
+          <h4 class="text-lg font-semibold mb-4">Services</h4>
           <ul class="space-y-2">
-            <li><a href="#" class="text-gray-400 hover:text-bee-yellow transition">Virtual Assistants</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-bee-yellow transition">Customer Support</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-bee-yellow transition">Marketing Assistants</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-bee-yellow transition">Legal Assistants</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-yellow-500 transition">Customer Service</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-yellow-500 transition">Accounting & Billing</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-yellow-500 transition">Marketing</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-yellow-500 transition">Legal Assistance</a></li>
           </ul>
         </div>
+
         <div>
-          <h3 class="text-lg font-semibold mb-4">Company</h3>
+          <h4 class="text-lg font-semibold mb-4">Company</h4>
           <ul class="space-y-2">
-            <li><a href="#" class="text-gray-400 hover:text-bee-yellow transition">About Us</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-bee-yellow transition">Our Process</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-bee-yellow transition">Testimonials</a></li>
-            <li><a href="#" class="text-gray=400 hover:text-bee-yellow transition">Careers</a></li>
+            <li><a href="#about" class="text-gray-400 hover:text-yellow-500 transition">About Us</a></li>
+            <li><a href="#process" class="text-gray-400 hover:text-yellow-500 transition">How It Works</a></li>
+            <li><a href="#benefits" class="text-gray-400 hover:text-yellow-500 transition">Benefits</a></li>
+            <li><a href="#contact" class="text-gray-400 hover:text-yellow-500 transition">Contact</a></li>
           </ul>
         </div>
+
         <div>
-          <h3 class="text-lg font-semibold mb-4">Connect</h3>
-          <div class="flex space-x-4 mb-4">
-            <a href="#" class="text-gray-400 hover:text-bee-yellow transition"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="text-gray-400 hover:text-bee-yellow transition"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="text-gray-400 hover:text-bee-yellow transition"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" class="text-gray-400 hover:text-bee-yellow transition"><i class="fab fa-instagram"></i></a>
-          </div>
-          <p class="text-gray-400">
-            Subscribe to our newsletter for updates and tips.
-          </p>
-          <div class="mt-2 flex">
-            <input type="email" placeholder="Your email"
-              class="px-4 py-2 rounded-l-md focus:outline-none text-gray-900">
-            <button class="bg-bee-yellow hover:bg-yellow-600 text-gray-900 px-4 py-2 rounded-r-md">
-              <i class="fas fa-paper-plane"></i>
-            </button>
-          </div>
+          <h4 class="text-lg font-semibold mb-4">Contact</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li class="flex items-center">
+              <i class="fas fa-map-marker-alt mr-2 text-yellow-500"></i>
+              <span>123 Hive Street, Austin, TX 78701</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-phone mr-2 text-yellow-500"></i>
+              <span>(800) 555-1234</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-envelope mr-2 text-yellow-500"></i>
+              <span>hello@beeproductive.com</span>
+            </li>
+          </ul>
         </div>
       </div>
+
       <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-        <p class="text-gray-400 text-sm mb-4 md:mb-0">
-          © 2023 Bee Productive. All rights reserved.
+        <p class="text-gray-500 text-sm mb-4 md:mb-0">
+          &copy; 2023 Bee Productive. All rights reserved.
         </p>
         <div class="flex space-x-6">
-          <a href="#" class="text-gray-400 hover:text-bee-yellow text-sm transition">Privacy Policy</a>
-          <a href="#" class="text-gray-400 hover:text-bee-yellow text-sm transition">Terms of Service</a>
-          <a href="#" class="text-gray-400 hover:text-bee-yellow text-sm transition">Cookie Policy</a>
+          <a href="#" class="text-gray-500 hover:text-yellow-500 text-sm transition">Privacy Policy</a>
+          <a href="#" class="text-gray-500 hover:text-yellow-500 text-sm transition">Terms of Service</a>
+          <a href="#" class="text-gray-500 hover:text-yellow-500 text-sm transition">Cookie Policy</a>
         </div>
       </div>
     </div>
@@ -949,31 +959,71 @@
 
   <script>
     // Mobile menu toggle
-    document.getElementById('mobile-menu-button').addEventListener('click', function () {
-      document.getElementById('mobile-menu').classList.toggle('hidden');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
     });
 
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+    // Popup form functions
+    function openPopup() {
+      document.getElementById('popupForm').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePopup() {
+      document.getElementById('popupForm').style.display = 'none';
+      document.getElementById('confirmationMessage').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    // Form submission handler
+    const popupForm = document.querySelector('#popupForm form');
+    if (popupForm) {
+      popupForm.addEventListener('submit', function (e) {
         e.preventDefault();
+        document.getElementById('popupForm').style.display = 'none';
+        document.getElementById('confirmationMessage').style.display = 'flex';
 
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
+        // Reset form
+        this.reset();
+      });
+    }
 
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          targetElement.scrollIntoView({
-            behavior: 'smooth'
-          });
+    // Scroll-triggered popup
+    window.addEventListener('scroll', function () {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight * 0.7) {
+        if (!localStorage.getItem('popupShown')) {
+          openPopup();
+          localStorage.setItem('popupShown', 'true');
+        }
+      }
+    });
 
-          // Close mobile menu if open
-          if (!document.getElementById('mobile-menu').classList.contains('hidden')) {
-            document.getElementById('mobile-menu').classList.add('hidden');
-          }
+    // Animate industry cards on scroll
+    const industryCards = document.querySelectorAll('.industry-card');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+          observer.unobserve(entry.target);
         }
       });
+    }, {
+      threshold: 0.1
     });
+
+    industryCards.forEach(card => {
+      observer.observe(card);
+    });
+
+    // Duplicate logos for infinite scroll effect
+    const logoScroll = document.querySelector('.logo-scroll');
+    if (logoScroll) {
+      logoScroll.innerHTML += logoScroll.innerHTML;
+    }
   </script>
 </body>
 
